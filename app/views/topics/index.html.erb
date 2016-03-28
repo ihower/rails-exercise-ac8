@@ -1,0 +1,11 @@
+<h1>Topic List</h1>
+
+<table>
+  <% @topics.each do |p| %>
+  <tr>
+    <td><%= link_to p.subject, topic_path(p) %></td>
+  </tr>
+  <% end %>
+</table>
+
+<%= paginate @topics %>
