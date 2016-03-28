@@ -2,6 +2,13 @@
   <%= link_to "New Topic", new_topic_path, :class => "btn btn-primary" %>
 </p>
 
+<p>
+  <%= link_to "ID ASC", topics_path( :sort => "id") %>
+  <%= link_to "ID DESC", topics_path( :sort => "") %>
+
+  <%= link_to "最後更新時間", topics_path( :sort => "updated") %>
+</p>
+
 <table class="table">
   <% @topics.each do |p| %>
   <tr>

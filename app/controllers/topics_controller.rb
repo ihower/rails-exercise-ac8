@@ -4,7 +4,16 @@ class TopicsController < ApplicationController
   before_action :set_my_topic, :only => [:edit, :update, :destroy]
 
   def index
-    @topics = Topic.order("id DESC").page( params[:page] )
+    @topics = Topic.page( params[:page] )
+
+    if params[:sort] == "id"
+      @topics = @topics.order("id")
+    elsif params[:sort] == "updated"
+      @topics = @topics.order("updated_at DESC")
+    else
+      @topics = @topics.order("id DESC")
+    end
+
   end
 
   def show
