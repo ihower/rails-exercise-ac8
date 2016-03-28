@@ -4,6 +4,7 @@
   <% @topics.each do |p| %>
   <tr>
     <td><%= link_to p.subject, topic_path(p) %></td>
+    <td><%= p.user.display_name %></td>
   </tr>
   <% end %>
 </table>
