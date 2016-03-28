@@ -2,10 +2,27 @@
 
 <%= simple_format @topic.content %>
 
+<%= form_for [@topic, @comment] do |f| %>
+
+  <% if @comment.errors.any? %>
+     <% @comment.errors.full_messages.each do |m| %>
+     <p><%= m %></p>
+     <% end %>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :content %>
+    <%= f.text_area :content, :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.submit :class => "btn btn-warning" %>
+  </div>
+<% end %>
+
 <h2>Comment list</h2>
 
 <ul>
 <% @topic.comments.each do |c| %>
-  <li><%= c.content %> by <%= c.user.display_name %></li>
+  <li><%= c.content %> by <%= c.user.try(:display_name) %></li>
 <% end %>
 </ul>
