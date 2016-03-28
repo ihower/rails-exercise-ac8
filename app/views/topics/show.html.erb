@@ -1,5 +1,11 @@
 <h1><%= @topic.subject %></h1>
 
+<% if @topic.image.exists? %>
+  <%= link_to @topic.image.url, :target => "_blank" do %>
+    <%= image_tag(@topic.image.url(:thumb)) %>
+  <% end %>
+<% end %>
+
 <%= simple_format @topic.content %>
 
 <%= form_for [@topic, @comment] do |f| %>
