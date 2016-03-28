@@ -2,11 +2,15 @@
   <%= link_to "New Topic", new_topic_path, :class => "btn btn-primary" %>
 </p>
 
-<p>
-  <%= link_to "ID ASC", topics_path( :sort => "id") %>
-  <%= link_to "ID DESC", topics_path( :sort => "") %>
+<%= search_form_for @q do |f| %>
+  <%= f.label :subject_cont %>
+  <%= f.search_field :subject_cont %>
+  <%= f.submit "Search" %>
+<% end %>
 
-  <%= link_to "最後更新時間", topics_path( :sort => "updated") %>
+<p>
+  <%= sort_link(@q, :id) %>
+  <%= sort_link(@q, :updated_at, "最後更新時間") %>
 </p>
 
 <table class="table">

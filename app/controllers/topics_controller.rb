@@ -4,7 +4,8 @@ class TopicsController < ApplicationController
   before_action :set_my_topic, :only => [:edit, :update, :destroy]
 
   def index
-    @topics = Topic.page( params[:page] )
+    @q = Topic.ransack(params[:q])
+    @topics = @q.result(distinct: true)
 
     if params[:sort] == "id"
       @topics = @topics.order("id")
@@ -14,6 +15,7 @@ class TopicsController < ApplicationController
       @topics = @topics.order("id DESC")
     end
 
+    @topics = @topics.page( params[:page] )
   end
 
   def show
