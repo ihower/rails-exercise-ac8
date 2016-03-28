@@ -1,10 +1,18 @@
-<%= link_to "New Topic", new_topic_path, :class => "btn btn-primary" %>
+<p>
+  <%= link_to "New Topic", new_topic_path, :class => "btn btn-primary" %>
+</p>
 
-<table>
+<table class="table">
   <% @topics.each do |p| %>
   <tr>
     <td><%= link_to p.subject, topic_path(p) %></td>
     <td><%= p.user.try(:display_name) %></td>
+    <td>
+      <% if current_user && ( p.user == current_user ) %>
+        <%= link_to "Edit", edit_topic_path(p), :class => "btn btn-default btn-sm" %>
+        <%= link_to "Delete", topic_path(p), :data => { :confirm => "r u sure?"}, :class => "btn btn-danger btn-sm", :method => :delete %>
+      <% end %>
+    </td>
   </tr>
   <% end %>
 </table>
