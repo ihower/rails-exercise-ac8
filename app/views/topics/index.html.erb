@@ -1,5 +1,7 @@
 <h1>Topic List</h1>
 
+<%= link_to "New Topic", new_topic_path, :class => "btn btn-primary" %>
+
 <table>
   <% @topics.each do |p| %>
   <tr>
