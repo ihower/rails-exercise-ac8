@@ -1,3 +1,11 @@
 <h1><%= @topic.subject %></h1>
 
 <%= simple_format @topic.content %>
+
+<h2>Comment list</h2>
+
+<ul>
+<% @topic.comments.each do |c| %>
+  <li><%= c.content %> by <%= c.user.display_name %></li>
+<% end %>
+</ul>

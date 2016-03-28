@@ -1,6 +1,7 @@
 namespace :dev do
   task :fake => :environment do
     Topic.delete_all
+    Comment.delete_all
 
     users = []
     10.times do
@@ -8,9 +9,14 @@ namespace :dev do
     end
 
     100.times do
-      Topic.create!( :subject => Faker::Lorem.sentence,
+      t = Topic.create!( :subject => Faker::Lorem.sentence,
                      :content => Faker::Lorem.paragraph,
-                     :user => users.sample )
+                     :user => users.sample  )
+
+      (5 + rand(10)).times do
+        t.comments.create!( :content => Faker::Lorem.sentence,
+                            :user => users.sample )
+      end
     end
 
   end
