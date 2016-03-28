@@ -1,12 +1,10 @@
-<h1>Topic List</h1>
-
 <%= link_to "New Topic", new_topic_path, :class => "btn btn-primary" %>
 
 <table>
   <% @topics.each do |p| %>
   <tr>
     <td><%= link_to p.subject, topic_path(p) %></td>
-    <td><%= p.user.display_name %></td>
+    <td><%= p.user.try(:display_name) %></td>
   </tr>
   <% end %>
 </table>
