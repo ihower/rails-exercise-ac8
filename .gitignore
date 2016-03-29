@@ -17,3 +17,5 @@
 /tmp
 
 /public/system
+
+/config/facebook.yml
