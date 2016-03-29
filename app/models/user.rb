@@ -7,6 +7,11 @@ class User < ActiveRecord::Base
 
   has_many :topics
 
+  def get_fb_data
+    j = RestClient.get "https://graph.facebook.com/v2.5/me", :params => { :access_token => self.fb_token, :fields => "id,name,email,picture" }
+    JSON.parse(j)
+  end
+
   def self.from_omniauth(auth)
     # Case 1: Find existing user by facebook uid
     user = User.find_by_fb_uid( auth.uid )
