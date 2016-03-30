@@ -2,12 +2,9 @@
 
 <% like = @topic.finy_like_by(current_user) %>
 
-<h2><%= @topic.likes.count %></h2>
-<% if like %>
-  <%= link_to "Unlike", topic_like_path(@topic, like), :method => :delete, :class => "btn btn-primary btn-lg" %>
-<% else %>
-  <%= link_to "Like", topic_likes_path(@topic), :method => :post, :class => "btn btn-primary btn-lg" %>
-<% end %>
+<div id="like-area">
+  <%= render :partial => "like", :locals => { :like => like } %>
+</div>
 
 <% if @topic.image.exists? %>
   <%= link_to @topic.image.url, :target => "_blank" do %>

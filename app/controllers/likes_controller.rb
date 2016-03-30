@@ -8,17 +8,25 @@ class LikesController < ApplicationController
     if like
       # do nothing
     else
-      @topic.likes.create!( :user => current_user )
+      @like = @topic.likes.create!( :user => current_user )
     end
 
-    redirect_to :back
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js { render "like" }
+    end
   end
 
   def destroy
     @like = current_user.likes.find( params[:id] )
     @like.destroy
 
-    redirect_to :back
+    @like = nil # 這樣讓 topics/_like.html.erb 會顯示 Like 按鈕
+
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js { render "like" }
+    end
   end
 
   protected
