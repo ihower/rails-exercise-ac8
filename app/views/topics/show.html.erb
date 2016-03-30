@@ -8,7 +8,7 @@
 
 <%= simple_format @topic.content %>
 
-<%= form_for [@topic, @comment] do |f| %>
+<%= form_for [@topic, @comment], :remote => true do |f| %>
 
   <% if @comment.errors.any? %>
      <% @comment.errors.full_messages.each do |m| %>
@@ -27,14 +27,8 @@
 
 <h2>Comment list</h2>
 
-<ul>
+<ul id="comments-list">
 <% @topic.comments.order("id DESC").each do |c| %>
-  <li id="comment-<%= c.id %>"><%= c.content %> by <%= c.user.try(:display_name) %>
-
-    <% if current_user && c.user == current_user %>
-      <%= link_to "Delete", topic_comment_path(@topic, c), :method => :delete, :remote => true %>
-    <% end %>
-
-  </li>
+  <%= render :partial => "comments/comment", :locals => { :c => c } %>
 <% end %>
 </ul>

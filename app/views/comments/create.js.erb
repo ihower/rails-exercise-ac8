@@ -1,0 +1,3 @@
+$("#comments-list").prepend("<%=j render( :partial => "comment", :locals => { :c => @comment }  ) %>");
+
+$("#new_comment").trigger('reset');

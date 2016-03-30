@@ -8,7 +8,12 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      redirect_to topic_url(@topic)
+
+      respond_to do |format|
+        format.html { redirect_to topic_url(@topic) }
+        format.js # create.js.erb
+      end
+
     else
       render "topics/show"
     end
