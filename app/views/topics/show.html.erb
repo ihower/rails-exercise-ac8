@@ -28,7 +28,13 @@
 <h2>Comment list</h2>
 
 <ul>
-<% @topic.comments.each do |c| %>
-  <li><%= c.content %> by <%= c.user.try(:display_name) %></li>
+<% @topic.comments.order("id DESC").each do |c| %>
+  <li><%= c.content %> by <%= c.user.try(:display_name) %>
+
+    <% if current_user && c.user == current_user %>
+      <%= link_to "Delete", topic_comment_path(@topic, c), :method => :delete %>
+    <% end %>
+
+  </li>
 <% end %>
 </ul>

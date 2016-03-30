@@ -6,12 +6,19 @@ class CommentsController < ApplicationController
   def create
     @comment = @topic.comments.new( comment_params )
     @comment.user = current_user
-    
+
     if @comment.save
       redirect_to topic_url(@topic)
     else
       render "topics/show"
     end
+  end
+
+  def destroy
+    @comment = current_user.comments.find( params[:id] )
+    @comment.destroy
+
+    redirect_to :back
   end
 
   protected
