@@ -15,7 +15,10 @@ class CommentsController < ApplicationController
       end
 
     else
-      render "topics/show"
+      respond_to do |format|
+        format.html { render "topics/show" }
+        format.js # create.js.erb
+      end                  
     end
   end
 
