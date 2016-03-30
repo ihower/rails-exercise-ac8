@@ -1,5 +1,14 @@
 <h1><%= @topic.subject %></h1>
 
+<% like = @topic.finy_like_by(current_user) %>
+
+<h2><%= @topic.likes.count %></h2>
+<% if like %>
+  <%= link_to "Unlike", topic_like_path(@topic, like), :method => :delete, :class => "btn btn-primary btn-lg" %>
+<% else %>
+  <%= link_to "Like", topic_likes_path(@topic), :method => :post, :class => "btn btn-primary btn-lg" %>
+<% end %>
+
 <% if @topic.image.exists? %>
   <%= link_to @topic.image.url, :target => "_blank" do %>
     <%= image_tag(@topic.image.url(:thumb)) %>
