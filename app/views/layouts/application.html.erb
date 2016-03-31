@@ -9,10 +9,15 @@
 <body>
 
 <div class="container">
+
+  <%= image_tag("alpha-logo.png") %>
+
+  <div class="logo"></div>
+  
   <h1><%= link_to "Home", root_path %></h1>
 
   <%= link_to "Ubike", ubike_path %>
-  
+
   <% if current_user %>
      <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
      <%= link_to('修改密碼', edit_registration_path(:user)) %>
