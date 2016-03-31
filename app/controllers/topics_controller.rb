@@ -74,7 +74,7 @@ class TopicsController < ApplicationController
 
   def unsubscribe
     @topic = Topic.find( params[:id] )
-    
+
     subscription = @topic.finy_subscription_by(current_user)
     subscription.destroy
 
@@ -84,7 +84,7 @@ class TopicsController < ApplicationController
   protected
 
   def topic_params
-    params.require(:topic).permit(:content, :subject, :image)
+    params.require(:topic).permit(:content, :subject, :image, :category_id)
   end
 
   def set_my_topic

@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require select2
 
 // 檔案放在 vendor/assets/javascript/autosize.min.js
 //= require autosize.min
