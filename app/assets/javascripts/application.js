@@ -14,4 +14,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+
+// 檔案放在 vendor/assets/javascript/autosize.min.js
+//= require autosize.min
+
 //= require_tree .
+
+$(document).on("page:change", function(){
+  autosize($('textarea'));
+});
