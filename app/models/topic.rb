@@ -15,11 +15,11 @@ class Topic < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   def finy_like_by(user)
-    self.likes.find_by_user_id( user.id )
+    user && self.likes.find_by_user_id( user.id )
   end
 
   def finy_subscription_by(user)
-    self.subscriptions.find_by_user_id( user.id )
+    user && self.subscriptions.find_by_user_id( user.id )
   end
 
 end
