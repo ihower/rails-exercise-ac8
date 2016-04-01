@@ -1,0 +1,9 @@
+"zh-TW":
+  hi: "你好啊 %{name} 今天早安"
+  hello_world: 唷!
+  logout: 登出
+  change_password: 修改密碼
+
+  admin:
+    foo: 哈哈
+    bar: 喜睡睡
