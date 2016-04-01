@@ -1,0 +1,10 @@
+<h1>Edit your profile</h1>
+
+
+<%= form_for @user do |f| %>
+
+  <%= f.time_zone_select :time_zone %>
+
+  <%= f.submit %>
+
+<% end %>

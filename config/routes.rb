@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   get "/ubike" => "welcome#ubike"
 
+  resources :users
+  
   resources :topics do
     resources :comments
     resources :likes

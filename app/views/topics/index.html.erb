@@ -18,6 +18,7 @@
   <tr>
     <td><%= link_to p.subject, topic_path(p) %></td>
     <td><%= p.user.try(:display_name) %></td>
+    <td><%= p.created_at.to_s(:short) %></td>
     <td>
       <% if current_user && ( p.user == current_user ) %>
         <%= link_to "Edit", edit_topic_path(p), :class => "btn btn-default btn-sm" %>

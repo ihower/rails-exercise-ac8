@@ -17,10 +17,6 @@
 <%= t("admin.foo") %>
 <%= t("admin", :scope => "foo") %>
 
-  <%= image_tag("alpha-logo.png") %>
-
-  <div class="logo"></div>
-
   <h1><%= link_to "Home", root_path %></h1>
 
   <%= link_to "Ubike", ubike_path %>
@@ -28,6 +24,8 @@
   <% if current_user %>
      <%= link_to( t(:logout) , destroy_user_session_path, :method => :delete) %> |
      <%= link_to( t(:change_password), edit_registration_path(:user)) %>
+
+     | <%= link_to "修改個人資料", edit_user_path(current_user) %>
   <% else %>
      <%= link_to('註冊', new_registration_path(:user)) %> |
      <%= link_to('登入', new_session_path(:user)) %>
