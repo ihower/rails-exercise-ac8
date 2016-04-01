@@ -21,6 +21,8 @@
   <% end %>
 <% end %>
 
+<h2>Status: <%= t( @topic.status, :scope => "topic.status" ) %></h2>
+
 <h2>Category: <%= @topic.category.try(:name) %></h2>
 
 <%= simple_format @topic.content %>

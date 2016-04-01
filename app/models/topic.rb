@@ -1,10 +1,12 @@
 class Topic < ActiveRecord::Base
 
+  STATUS = ["draft", "published", "scheduled"]
+
   validates_presence_of :subject
 
   belongs_to :user
   belongs_to :category
-  
+
   has_many :comments
 
   has_many :likes

@@ -7,3 +7,9 @@
   admin:
     foo: 哈哈
     bar: 喜睡睡
+
+  topic:
+    status:
+      draft: 這是草稿
+      published: 公開發布
+      scheduled: 預定

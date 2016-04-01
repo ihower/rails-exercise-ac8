@@ -12,8 +12,14 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :status %>
+    <%= f.select :status, topic_status_options, :class => "form-control" %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :category %>
-    <%= f.collection_select :category_id, Category.all, :id, :name, {}, :class => "form-control" %>
+    <%#= f.collection_select :category_id, Category.all, :id, :name, {}, :class => "form-control" %>
+    <%= f.select :category_id, category_name_options, {}, :class => "form-control" %>
   </div>
 
   <div class="form-group">

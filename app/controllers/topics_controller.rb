@@ -15,6 +15,8 @@ class TopicsController < ApplicationController
       @topics = @topics.order("id DESC")
     end
 
+    @topics = @topics.where( :status => "published" )
+
     @topics = @topics.page( params[:page] )
   end
 
@@ -84,7 +86,7 @@ class TopicsController < ApplicationController
   protected
 
   def topic_params
-    params.require(:topic).permit(:content, :subject, :image, :category_id)
+    params.require(:topic).permit(:content, :subject, :image, :category_id, :status)
   end
 
   def set_my_topic
