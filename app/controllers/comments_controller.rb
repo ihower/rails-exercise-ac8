@@ -9,6 +9,14 @@ class CommentsController < ApplicationController
 
     if @comment.save
 
+      # notify users
+      all_users = @topic.comments.map{ |c| c.user }
+      all_users << @topic.user
+      all_users = all_users.uniq
+      all_users.each do |u|
+        UserMailer.notify_comment(@topic, u).deliver_later
+      end
+
       respond_to do |format|
         format.html { redirect_to topic_url(@topic) }
         format.js # create.js.erb
@@ -18,7 +26,7 @@ class CommentsController < ApplicationController
       respond_to do |format|
         format.html { render "topics/show" }
         format.js # create.js.erb
-      end                  
+      end
     end
   end
 

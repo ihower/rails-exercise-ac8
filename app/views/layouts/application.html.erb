@@ -10,7 +10,9 @@
 
 <div class="container">
 
-<%= t(:hi, :name => current_user.display_name ) %>
+<% if current_user %>
+  <%= t(:hi, :name => current_user.display_name ) %>
+<% end %>
 
 <%= t("hello_world") %>
 

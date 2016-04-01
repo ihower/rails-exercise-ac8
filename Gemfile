@@ -5,6 +5,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.6'
 
 gem 'rails-i18n'
+gem "letter_opener", :group => :development
+
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
