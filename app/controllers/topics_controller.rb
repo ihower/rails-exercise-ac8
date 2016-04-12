@@ -23,6 +23,13 @@ class TopicsController < ApplicationController
   def show
     @topic = Topic.find( params[:id] )
     @comment = Comment.new
+
+    respond_to do |format|
+      format.html
+      format.json {
+        render :json => { :id => @topic.id, :subject => @topic.subject }
+      }
+    end
   end
 
   def new

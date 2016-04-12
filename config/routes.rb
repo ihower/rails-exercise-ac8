@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  scope :path => '/api/v1/', :module => "api_v1", :as => 'v1' do
+    resources :topics
+  end
+
   resources :people
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
@@ -9,7 +13,7 @@ Rails.application.routes.draw do
   get "/ubike" => "welcome#ubike"
 
   resources :users
-  
+
   resources :topics do
     resources :comments
     resources :likes
