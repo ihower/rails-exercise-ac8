@@ -4,16 +4,16 @@ RSpec.describe User, type: :model do
 
   describe ".display_name" do
     it "should return email first part" do
-      user = User.new( :email => "ihover@gmail.com" )
-      expect( user.display_name ).to eq("ihover")
+      user = create_user
+      expect( user.display_name ).to eq("test")
     end
   end
 
   describe ".like_topic" do
 
     before do
-      @user = User.create!( :email => "test@example.com", :password => "12345678")
-      @topic = Topic.create!( :subject => "FOOBAR")
+      @user =create_user
+      @topic = create_topic
     end
 
     it "should like topic" do

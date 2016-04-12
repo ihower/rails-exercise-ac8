@@ -3,12 +3,12 @@ require 'rails_helper'
 RSpec.describe TopicsController, type: :controller do
 
   before do
-    @user = User.create!( :email => "test@example.com", :password => "12345678")
+    @user = create_user
     sign_in @user
   end
 
   describe "POST #create" do
-    
+
     it "should create topic failed" do
       post :create, :topic => { :subject => "" }
 

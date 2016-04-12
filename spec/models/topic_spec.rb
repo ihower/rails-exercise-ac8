@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe Topic, type: :model do
 
   before do
-    @user = User.create!( :email => "test@example.com", :password => "12345678")
-    @topic = Topic.create!( :subject => "FOOBAR")
+    @user = create_user
+    @topic = create_topic
   end
 
   describe ".finy_like_by" do
