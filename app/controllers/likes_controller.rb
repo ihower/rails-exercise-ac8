@@ -4,13 +4,8 @@ class LikesController < ApplicationController
   before_action :set_topic
 
   def create
-    like = @topic.finy_like_by(current_user)
-    if like
-      # do nothing
-    else
-      @like = @topic.likes.create!( :user => current_user )
-    end
-
+    @like = current_user.like_topic(@topic)
+    
     respond_to do |format|
       format.html { redirect_to :back }
       format.js { render "like" }

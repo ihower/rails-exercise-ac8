@@ -54,4 +54,13 @@ class User < ActiveRecord::Base
     email.split("@").first
   end
 
+  def like_topic(topic)
+    like = topic.finy_like_by(self)
+    unless like
+      like = Like.create!( :topic => topic, :user => self )
+    end
+
+    return like
+  end
+
 end
