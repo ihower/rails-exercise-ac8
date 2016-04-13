@@ -68,4 +68,40 @@ RSpec.describe "Topic", type: :request do
     end
   end
 
+  describe "DELETE /api/v1/topics/:id" do
+    it "should delete topic" do
+      delete "/api/v1/topics/#{@topic.id}"
+
+      expect(response).to have_http_status(200)
+
+      topic = Topic.find_by_id(@topic.id)
+      expect(topic).to eq(nil)
+
+      #expect {
+      #  Topic.find(@topic.id)
+      #}.to raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
+
+  describe "PATCH /api/v1/topics/:id" do
+    it "should return errors" do
+      patch "/api/v1/topics/#{@topic.id}"
+
+      expect(response).to have_http_status(400)
+    end
+
+    it "should return topic id" do
+      patch "/api/v1/topics/#{@topic.id}", :subject => "123", :content => "456"
+
+      expect(response).to have_http_status(200)
+      parsed_data = JSON.parse( response.body )
+
+      @topic.reload
+
+      expect(parsed_data).to eq( { "id" => @topic.id } )
+      expect(@topic.subject).to eq("123")
+      expect(@topic.content).to eq("456")
+    end
+  end
+
 end
