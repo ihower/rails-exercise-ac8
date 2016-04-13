@@ -84,10 +84,22 @@ RSpec.describe "Topic", type: :request do
   end
 
   describe "PATCH /api/v1/topics/:id" do
-    it "should return errors" do
+    it "should error if no any keys" do
       patch "/api/v1/topics/#{@topic.id}"
-
       expect(response).to have_http_status(400)
+    end
+
+    it "should partial update content" do
+      patch "/api/v1/topics/#{@topic.id}", :content => "456"
+      expect(response).to have_http_status(200)
+
+      parsed_data = JSON.parse( response.body )
+
+      @topic.reload
+
+      expect(parsed_data).to eq( { "id" => @topic.id } )
+      expect(@topic.subject).to eq("FOOBAR")
+      expect(@topic.content).to eq("456")
     end
 
     it "should return topic id" do

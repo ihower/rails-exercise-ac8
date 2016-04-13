@@ -23,12 +23,21 @@ class ApiV1::TopicsController < ApiController
   def update
     @topic = Topic.find( params[:id] )
 
-    if @topic.update( :subject => params[:subject],
-                      :content => params[:content] )
+    columns = [:subject, :content]
 
-      render :json => { :id => @topic.id }
+    if params.slice(*columns).keys.any?
+      columns.each do |column|
+        @topic[column] = params[column] if params[column]
+      end
+
+      if @topic.save
+        render :json => { :id => @topic.id }
+      else
+        render :json => { :message => "failed", :errors => @topic.errors }, :status => 400
+      end
+
     else
-      render :json => { :message => "failed", :errors => @topic.errors }, :status => 400
+      render :json => { :message => "no keys"}, :status => 400
     end
   end
 
