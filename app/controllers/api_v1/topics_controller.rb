@@ -25,7 +25,8 @@ class ApiV1::TopicsController < ApiController
 
     columns = [:subject, :content]
 
-    if params.slice(*columns).keys.any?
+    #if params.slice(*columns).keys.any?
+    if columns.any?{ |c| params.key?(c) }
       columns.each do |column|
         @topic[column] = params[column] if params[column]
       end
