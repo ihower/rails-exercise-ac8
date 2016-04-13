@@ -1,7 +1,12 @@
 class ApiV1::TopicsController < ApiController
 
   def index
-    render :json => { :message => "Test"}
+    @topics = Topic.page( params[:page] )
+  end
+
+  def show
+    @topic = Topic.find(params[:id])
+    # show.json.jbuilder
   end
 
   def create
