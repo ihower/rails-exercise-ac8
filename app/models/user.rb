@@ -21,9 +21,15 @@ class User < ActiveRecord::Base
     self.authentication_token = Devise.friendly_token
   end
 
-  def get_fb_data
-    j = RestClient.get "https://graph.facebook.com/v2.5/me", :params => { :access_token => self.fb_token, :fields => "id,name,email,picture" }
-    JSON.parse(j)
+  def self.get_fb_data(access_token)
+    res = RestClient.get "https://graph.facebook.com/v2.4/me",  { :params => { :access_token => access_token } }
+
+    if res.code == 200
+      JSON.parse( res.to_str )
+    else
+      Rails.logger.warn(res.body)
+      nil
+    end
   end
 
   def self.from_omniauth(auth)
