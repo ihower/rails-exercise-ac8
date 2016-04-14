@@ -14,6 +14,13 @@ class User < ActiveRecord::Base
   has_many :subscriptions
   has_many :subscribed_topics, :through => :likes, :source => :topic
 
+  before_create :generate_authentication_token
+
+  def generate_authentication_token
+    # self.authentication_token = SecureRandom.hex(16)
+    self.authentication_token = Devise.friendly_token
+  end
+
   def get_fb_data
     j = RestClient.get "https://graph.facebook.com/v2.5/me", :params => { :access_token => self.fb_token, :fields => "id,name,email,picture" }
     JSON.parse(j)
