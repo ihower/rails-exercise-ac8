@@ -1,0 +1,21 @@
+<h1>All Orders list</h1>
+
+<table class="table">
+
+  <% @orders.each do |order| %>
+  <tr>
+    <td><%= order.id %></td>
+    <td><%= order.name %></td>
+    <td><%= order.email %></td>
+    <td>
+      <ul>
+      <% order.line_items.each do |line| %>
+        <li><%= line.product.name %>: <%= line.qty %></li>
+      <% end %>
+      <ul>
+    </td>
+    <td><%= order.amount %></td>
+    <td><%= order.created_at.to_s(:short) %></td>
+  </tr>
+  <% end %>
+</table>

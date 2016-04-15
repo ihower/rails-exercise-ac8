@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :orders
+
   resources :people
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
@@ -35,6 +37,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :orders
+  end
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
