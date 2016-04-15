@@ -1,5 +1,15 @@
 <h1>Product List</h1>
 
+<p> Cart: <%= @cart.line_items.map{ |l| l.qty }.sum %> </p>
+<ul>
+  <% @cart.line_items.each do |line| %>
+    <li>
+      <%= line.product.name %> 買了 <%= line.qty %> 個
+      <%= link_to "取消", cancel_product_path( line.product ), :method => :post %>
+    </li>
+  <% end %>
+</ul>
+
 <% @products.each do |p| %>
 <div class="item">
 
@@ -7,9 +17,8 @@
     <%= image_tag( Faker::Avatar.image, :width => 36 ) %>
     <%= p.name %>
   <% end %>
-
-
   $<%= p.price %>
+  <%= button_to "Buy", buy_product_path(p), :class => "btn btn-danger btn-xs", :method => :post %>
 
 </div>
 <% end %>

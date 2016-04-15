@@ -8,8 +8,12 @@ Rails.application.routes.draw do
     resources :topics
   end
 
-  resources :products
-
+  resources :products do
+    member do
+      post :buy
+      post :cancel
+    end
+  end
 
   resources :people
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

@@ -6,6 +6,15 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :set_timezone
 
+  def get_cart
+    if session[:cart_id]
+      @cart = Cart.find( session[:cart_id] )
+    else
+      @cart = Cart.create
+      session[:cart_id] = @cart.id
+    end
+  end
+
   def set_timezone
      if current_user && current_user.time_zone
         Time.zone = current_user.time_zone
