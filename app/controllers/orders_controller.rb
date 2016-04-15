@@ -16,15 +16,9 @@ class OrdersController < ApplicationController
     @order = Order.new( order_params )
     @order.user = current_user
 
-    @cart.line_items.each do |line|
-      @order.line_items.build( :product => line.product, :qty => line.qty )
-    end
+    @order.clone_cart_line_items(@cart)
 
-    amount = 0
-    @cart.line_items.each do |line|
-      amount +=  line.product.price * line.qty
-    end
-    @order.amount = amount
+    @order.amount = @cart.amount
 
     if @order.save
 
