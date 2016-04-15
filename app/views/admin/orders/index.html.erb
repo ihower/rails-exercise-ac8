@@ -8,6 +8,11 @@
     <td><%= order.name %></td>
     <td><%= order.email %></td>
     <td>
+      <% if order.user %>
+        User ID: <%= order.user_id %>
+      <% end %>
+    </td>
+    <td>
       <ul>
       <% order.line_items.each do |line| %>
         <li><%= line.product.name %>: <%= line.qty %></li>

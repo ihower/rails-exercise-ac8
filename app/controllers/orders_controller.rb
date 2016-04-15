@@ -1,13 +1,20 @@
 class OrdersController < ApplicationController
 
+  before_action :authenticate_user!
   before_action :get_cart
 
   def new
     @order = Order.new
+
+    if current_user
+      @order.name = current_user.display_name
+      @order.email = current_user.email
+    end
   end
 
   def create
     @order = Order.new( order_params )
+    @order.user = current_user
 
     @cart.line_items.each do |line|
       @order.line_items.build( :product => line.product, :qty => line.qty )
@@ -21,7 +28,7 @@ class OrdersController < ApplicationController
 
     if @order.save
 
-      session[:cart_id] = nil
+      cookies[:cart_id] = nil
 
       redirect_to products_path
     else
