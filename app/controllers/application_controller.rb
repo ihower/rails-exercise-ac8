@@ -39,4 +39,12 @@ class ApplicationController < ActionController::Base
     I18n.locale = session[:locale] || I18n.default_locale
   end
 
+  def check_admin
+    unless current_user.admin?
+      flash[:alert] = "Nooooo~~~"
+      redirect_to root_path
+      return
+    end
+  end
+
 end

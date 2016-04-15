@@ -76,4 +76,8 @@ class User < ActiveRecord::Base
     return like
   end
 
+  def admin?
+    self.role == "admin"
+  end
+
 end
