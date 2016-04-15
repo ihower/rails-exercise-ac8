@@ -6,13 +6,21 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :set_timezone
 
-  def get_cart
+  protected
 
-    if cookies.signed[:cart_id]
-      @cart = Cart.find( cookies.signed[:cart_id] )
+  helper_method :current_cart
+
+  def current_cart
+    if @cart
+      return @cart
     else
-      @cart = Cart.create
-      cookies.permanent.signed[:cart_id] = @cart.id
+      if cookies.signed[:cart_id]
+        @cart = Cart.find( cookies.signed[:cart_id] )
+      else
+        @cart = Cart.create
+        cookies.permanent.signed[:cart_id] = @cart.id
+      end
+      return @cart
     end
   end
 

@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :get_cart
 
   def new
     @order = Order.new
@@ -16,9 +15,9 @@ class OrdersController < ApplicationController
     @order = Order.new( order_params )
     @order.user = current_user
 
-    @order.clone_cart_line_items(@cart)
+    @order.clone_cart_line_items(current_cart)
 
-    @order.amount = @cart.amount
+    @order.amount = current_cart.amount
 
     if @order.save
 

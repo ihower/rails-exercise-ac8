@@ -1,7 +1,5 @@
 class ProductsController < ApplicationController
 
-  before_action :get_cart
-
   def index
     @products = Product.page( params[:id] )
   end
@@ -19,7 +17,7 @@ class ProductsController < ApplicationController
       qty = 1
     end
 
-    @cart.add_product( @product, qty )
+    current_cart.add_product( @product, qty )
 
     respond_to do |format|
       format.html { redirect_to :back }
@@ -29,7 +27,7 @@ class ProductsController < ApplicationController
 
   def cancel
     @product = Product.find( params[:id] )
-    @cart.remove_product(@product)
+    current_cart.remove_product(@product)
 
     redirect_to :back
   end

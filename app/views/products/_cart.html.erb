@@ -1,9 +1,9 @@
-<p>Total: <%= @cart.total %> </p>
+<p>Total: <%= current_cart.total %> </p>
 
-<p>Amount:  $<%= @cart.amount %></p>
+<p>Amount:  $<%= current_cart.amount %></p>
 
 <ul>
-  <% @cart.line_items.each do |line| %>
+  <% current_cart.line_items.each do |line| %>
     <li>
       <%= line.product.name %> 買了 <%= line.qty %> 個
       <%= link_to "取消", cancel_product_path( line.product ), :method => :post %>
