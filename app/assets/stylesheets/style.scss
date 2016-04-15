@@ -1,8 +1,15 @@
 h1 {
-  
+
 }
 
 .logo {
   height: 200px;
   background-image: asset-url("alpha-logo.png");
+}
+
+.item {
+  float: left;
+  margin: 5px;
+  border: 1px solid #ddd;
+  padding: 5px;
 }

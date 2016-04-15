@@ -17,9 +17,16 @@ namespace :dev do
         puts "create #{u["sna"]}"
       end
     end
-    
+
   end
 
+  task :fake_products => :environment do
+    Product.delete_all
+    100.times do
+      p = Product.create!( :name => Faker::Lorem.word, :description => Faker::Lorem.paragraph, :price => (rand(100) + 1) * 100 )
+      puts "Create product #{p.id}"
+    end
+  end
 
   task :fake => :environment do
     Topic.delete_all

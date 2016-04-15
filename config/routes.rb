@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     resources :topics
   end
 
+  resources :products
+
+
   resources :people
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
