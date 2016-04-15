@@ -4,7 +4,9 @@
   <%= link_to "結帳!", new_order_path, :class => "btn btn-primary" %>
 </p>
 
-<%= render "cart" %>
+<div id="cart">
+  <%= render "cart" %>
+</div>
 
 <% @products.each do |p| %>
 <div class="item">
@@ -14,7 +16,7 @@
     <%= p.name %>
   <% end %>
   $<%= p.price %>
-  <%= button_to "Buy", buy_product_path(p), :class => "btn btn-danger btn-xs", :method => :post %>
+  <%= button_to "Buy", buy_product_path(p), :class => "btn btn-danger btn-xs", :method => :post, :remote => true %>
 
 </div>
 <% end %>
