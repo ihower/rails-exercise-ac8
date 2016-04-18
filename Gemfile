@@ -55,6 +55,9 @@ gem "paperclip", "~> 4.3"
 
 gem "ransack"
 
+gem 'capistrano-rails', :group => :development
+gem 'capistrano-passenger', :group => :development
+
 group :development, :test do
 
   gem 'rspec-rails'
