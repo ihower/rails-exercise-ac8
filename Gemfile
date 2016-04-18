@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 
+gem 'mysql2'
+
 gem 'rails-i18n'
 gem "letter_opener", :group => :development
 
