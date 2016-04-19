@@ -8,6 +8,7 @@ gem 'mysql2'
 
 gem 'sidekiq'
 
+gem 'whenever', :require => false
 
 gem 'rails-i18n'
 gem "letter_opener", :group => :development
