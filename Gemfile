@@ -6,6 +6,9 @@ gem 'rails', '4.2.6'
 
 gem 'mysql2'
 
+gem 'sidekiq'
+
+
 gem 'rails-i18n'
 gem "letter_opener", :group => :development
 

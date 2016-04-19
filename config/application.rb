@@ -23,5 +23,10 @@ module RailsExercise
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # config/application.rb
+    config.active_job.queue_adapter = :sidekiq
+    config.eager_load_paths += %W( #{config.root}/app/jobs )
+
   end
 end
