@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160415044947) do
+ActiveRecord::Schema.define(version: 20160419042135) do
 
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -137,6 +137,7 @@ ActiveRecord::Schema.define(version: 20160415044947) do
     t.string   "time_zone"
     t.string   "authentication_token"
     t.string   "role"
+    t.text     "fb_raw_data"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true
