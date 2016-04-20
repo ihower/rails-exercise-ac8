@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  post 'pay2go/return'
+  post 'pay2go/notify'
+
   scope :path => '/api/v1/', :module => "api_v1", :as => 'v1', :defaults => { :format => :json } do
 
     post "/login" => "auth#login"
@@ -15,7 +18,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :orders
+  resources :orders do
+    member do
+      post :checkout_pay2go
+    end
+  end
 
   resources :people
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

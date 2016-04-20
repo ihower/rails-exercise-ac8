@@ -1,0 +1,15 @@
+<h1>Order #<%= @order.id %></h1>
+
+
+<% if @order.paid %>
+  <p>已付款</p>
+<% else %>
+  <p>請付款</p>
+
+  <p>
+    <%= link_to "刷卡", checkout_pay2go_order_path(@order, :payment_method => "Credit"), :class => "btn btn-primary btn-lg", :method => :post %>
+    <%= link_to "WebATM", checkout_pay2go_order_path(@order, :payment_method => "WebATM"), :class => "btn btn-primary btn-lg", :method => :post %>
+    <%= link_to "ATM", checkout_pay2go_order_path(@order, :payment_method => "ATM"), :class => "btn btn-primary btn-lg", :method => :post %>
+  </p>
+
+<% end %>

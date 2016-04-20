@@ -5,6 +5,8 @@ class Order < ActiveRecord::Base
   has_many :line_items
   has_many :products, :through => :line_items
 
+  has_many :payments
+  
   def clone_cart_line_items(cart)
     cart.line_items.each do |line|
       self.line_items.build( :product => line.product, :qty => line.qty )

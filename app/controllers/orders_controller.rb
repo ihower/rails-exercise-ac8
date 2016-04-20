@@ -2,6 +2,10 @@ class OrdersController < ApplicationController
 
   before_action :authenticate_user!
 
+  def show
+    @order = current_user.orders.find( params[:id] )
+  end
+
   def new
     @order = Order.new
 
@@ -20,13 +24,24 @@ class OrdersController < ApplicationController
     @order.amount = current_cart.amount
 
     if @order.save
-
       cookies[:cart_id] = nil
 
-      redirect_to products_path
+      redirect_to order_path(@order)
     else
       render :new
     end
+  end
+
+  def checkout_pay2go
+   @order = current_user.orders.find(params[:id])
+
+   if @order.paid?
+     redirect_to :back, alert: 'already paid!'
+   else
+    @payment = Payment.create!( :order => @order,
+                                :payment_method => params[:payment_method] )
+    render :layout => false
+   end
   end
 
   protected
