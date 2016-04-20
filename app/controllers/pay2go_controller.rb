@@ -9,16 +9,12 @@ class Pay2goController < ApplicationController
     end
 
     unless result
-      flash[:alert] = t("registration.error.failed_pay")
+      flash[:alert] = "驗證碼錯誤"
     end
 
     @order = @payment.order
 
     if @payment.paid?
-
-      @order.paid = true
-      @order.save!
-      
      # send paid email
     end
 
