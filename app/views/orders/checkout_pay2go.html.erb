@@ -1,6 +1,6 @@
 <h1>轉址前往信用卡付款頁面，請勿關閉或離開頁面...</h1>
 
-<form action="https://capi.pay2go.com/MPG/mpg_gateway" method="post">
+<form action="<%= Pay2go.url %>" method="post">
   <% generate_pay2go_params(@payment).each do |key, value| %>
     <%= hidden_field_tag key, value %>
   <% end %>
