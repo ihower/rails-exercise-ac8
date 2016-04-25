@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   resources :todos do
     collection do
-      get :v1
+      get :v1 # EJS
+      get :v2 # Vue.js
     end
   end
 

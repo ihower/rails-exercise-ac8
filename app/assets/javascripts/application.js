@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap-sprockets
 //= require select2
 
@@ -20,6 +19,7 @@
 //= require autosize.min
 
 //= require_tree ./templates
+//= require vue
 
 $(document).on("page:change", function(){
   autosize($('textarea'));
