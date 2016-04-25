@@ -15,7 +15,9 @@ class Topic < ActiveRecord::Base
   has_many :subscriptions
   has_many :subscribed_users, :through => :likes, :source => :user
 
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png",
+                    :storage => :s3, :s3_credentials => "#{Rails.root}/config/s3.yml", :s3_host_name => "s3-ap-northeast-1.amazonaws.com"
+
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   def finy_like_by(user)

@@ -20,3 +20,4 @@
 
 /config/facebook.yml
 /config/email.yml
+/config/s3.yml

@@ -56,6 +56,8 @@ gem 'kaminari'
 gem 'faker'
 
 gem "paperclip", "~> 4.3"
+gem 'aws-sdk-v1'
+
 
 gem "ransack"
 
