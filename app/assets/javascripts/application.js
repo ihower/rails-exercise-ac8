@@ -19,7 +19,12 @@
 //= require autosize.min
 
 //= require_tree ./templates
+
 //= require vue
+
+//= require react
+//= require react_ujs
+//= require_tree ./components
 
 $(document).on("page:change", function(){
   autosize($('textarea'));

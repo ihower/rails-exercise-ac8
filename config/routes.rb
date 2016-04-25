@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     collection do
       get :v1 # EJS
       get :v2 # Vue.js
+      get :v3 # react.js
     end
   end
 
