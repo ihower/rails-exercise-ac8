@@ -19,6 +19,8 @@
 // 檔案放在 vendor/assets/javascript/autosize.min.js
 //= require autosize.min
 
+//= require_tree ./templates
+
 $(document).on("page:change", function(){
   autosize($('textarea'));
 });
