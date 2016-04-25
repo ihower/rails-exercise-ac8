@@ -19,18 +19,15 @@ class TodosController < ApplicationController
   def create
     @todo = current_user.todos.new( :title => params[:title] )
 
+    @todo.save!
 
-    if @todo.save
-      render :json => { :id => @todo.id }
-    else
-      render :json => { :message => @todo.errors }, :status => 400
-    end
+    render :json => { :id => @todo.id, :title => @todo.title }
   end
 
   def destroy
     @todo.destroy
 
-    render :nothing => true
+    render :json => { :id => @todo.id }
   end
 
   private
