@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :todos do
+    collection do
+      get :v1
+    end
+  end
+
   get 'this' => "welcome#this"
 
   post 'pay2go/return'

@@ -1,0 +1,83 @@
+<h2>Todo List</h2>
+
+<input type="text" id="todo-input">
+<input type="submit" id="todo-submit">
+
+<ul id="todo-list">
+</ul>
+
+<script>
+
+  var App = {
+    todos: [],
+    init: function(){
+      var that = this;
+      $.ajax({
+        url: "/todos",
+        dataType: "json",
+        success: function(data){
+          that.todos = data;
+          that.render();
+        }
+      })
+
+      this.bind_events();
+    },
+    bind_events: function(){
+      var that = this;
+      $("#todo-submit").click(function(){
+        var title = $("#todo-input").val();
+        $.ajax({
+          context: that,
+          url: "/todos",
+          type: "POST",
+          data: {
+            title: title
+          },
+          dataType: "json",
+          success: that.add
+        })
+      })
+
+      $("#todo-list").on("click", ".remove-todo", function(e){
+        e.preventDefault();
+
+        var remove_tag = $(this);
+        var li_tag = $(this).closest("li");
+
+        var todo_id = li_tag.data("id");
+
+        $.ajax({
+          context: that,
+          url : "/todos/" + todo_id,
+          type: "DELETE",
+          success: that.remove
+        })
+      })
+
+    },
+    add: function(data){
+      this.todos.push(data);
+      this.render();
+      $("#todo-input").val("");
+    },
+
+    remove: function(data){
+      this.todos = $.grep(this.todos, function(e){
+        return e.id != data.id
+      });
+
+      this.render();
+    },
+    
+    render: function(){
+      $("#todo-list").html("");
+      this.todos.forEach(function(todo){
+         $("#todo-list").append("<li data-id='" + todo.id + "'>" + todo.title + " <a href='#' class='remove-todo'>(remove)</a></li>");
+      })
+    }
+  }
+
+  App.init();
+
+</script>
