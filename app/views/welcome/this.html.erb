@@ -1,0 +1,47 @@
+<script>
+
+var obj = {
+  name: "FOOBAR",
+  hello: function(){
+    alert( this.name );
+  }
+}
+
+obj.hello();
+
+</script>
+
+
+<!--- Example 1 -->
+<a id="demo">Demo click event</a>
+
+<script>
+  var App = {
+    name: "FOOBAR",
+    init: function(e){
+      var that = this;
+      $("#demo").click(function(){
+        alert(that.name);
+      })
+    }
+  }
+
+  App.init();
+</script>
+
+<!--- Example 2 -->
+<script>
+
+  var data = "outside data"
+
+  var obj = {
+    data: "obj data",
+    foo: function(){
+      console.log("obj's foo! : " + this.data);
+    }
+  }
+
+  setTimeout(obj.foo, 100)
+  //setTimeout(obj.foo.bind(obj), 100)
+
+</script>

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'this' => "welcome#this"
+
   post 'pay2go/return'
   post 'pay2go/notify'
 
