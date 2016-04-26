@@ -1,3 +1,11 @@
+<div id="content">
+</div>
+<script>
+  var str = JST["templates/hello"]( { full_name: "ihower"} )
+  $("#content").html(str);
+</script>
+
+
 <h2>Todo List</h2>
 
 <input type="text" id="todo-input">
@@ -69,12 +77,9 @@
 
       this.render();
     },
-    
+
     render: function(){
-      $("#todo-list").html("");
-      this.todos.forEach(function(todo){
-         $("#todo-list").append("<li data-id='" + todo.id + "'>" + todo.title + " <a href='#' class='remove-todo'>(remove)</a></li>");
-      })
+      $("#todo-list").html( JST["templates/todos"]( { todos: this.todos } ) );
     }
   }
 
