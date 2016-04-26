@@ -28,5 +28,7 @@ module RailsExercise
     config.active_job.queue_adapter = :sidekiq
     config.eager_load_paths += %W( #{config.root}/app/jobs )
 
+    config.browserify_rails.commandline_options = "-t [ babelify --presets [ es2015 ] --extensions .es6 ]"
+
   end
 end

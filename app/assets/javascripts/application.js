@@ -26,6 +26,9 @@
 //= require react_ujs
 //= require_tree ./components
 
+require("tryes6.es6");
+
 $(document).on("page:change", function(){
   autosize($('textarea'));
 });
+
