@@ -32,3 +32,5 @@ $(document).on("page:change", function(){
   autosize($('textarea'));
 });
 
+
+Vue.component( 'app' , require('app.vue') )

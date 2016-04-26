@@ -11,4 +11,4 @@ new Hello();
 
 new Foo();
 
-alert( Bar(11) );
+console.log( Bar(11) );
