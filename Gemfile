@@ -8,6 +8,8 @@ gem 'ejs'
 
 gem 'vuejs-rails'
 
+gem 'react-rails'
+
 gem 'mysql2'
 
 gem 'sidekiq'
