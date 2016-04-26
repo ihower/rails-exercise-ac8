@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :todos do
     collection do
       get :v1
+      get :v2
     end
   end
 

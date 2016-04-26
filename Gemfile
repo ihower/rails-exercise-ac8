@@ -6,6 +6,8 @@ gem 'rails', '4.2.6'
 
 gem 'ejs'
 
+gem 'vuejs-rails'
+
 gem 'mysql2'
 
 gem 'sidekiq'

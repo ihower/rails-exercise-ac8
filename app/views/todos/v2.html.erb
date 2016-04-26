@@ -1,0 +1,63 @@
+<div id="app">
+
+  <input type="text" v-model="new_todo_title">
+  <input type="submit" v-on:click="add">
+
+  <ul>
+    <li v-for="todo in todos">
+      {{ todo.title }}
+      <a v-on:click="remove(todo.id)">(remove)</a>
+    </li>
+  </ul>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    todos: []
+  },
+  ready: function(){
+    var that = this;
+    $.ajax({
+      url: "/todos",
+      dataType: "json",
+      success: function(todos){
+        that.todos = todos;
+      }
+    })
+  },
+  methods: {
+    add: function(){
+      var that = this;
+      $.ajax({
+        url: "/todos",
+        type: "POST",
+        data: {
+          title: that.new_todo_title
+        },
+        dataType: "json",
+        success: function(data){
+          that.todos.push(data);
+          that.new_todo_title = "";
+        }
+      })
+    },
+    remove: function(todo_id) {
+      var that = this;
+      $.ajax({
+        url : "/todos/" + todo_id,
+        type: "DELETE",
+        success: function(data){
+          that.todos = $.grep(that.todos, function(e){
+            return e.id != data.id
+          });
+        }
+      })
+    }
+  }
+})
+
+</script>
+
+</script>
